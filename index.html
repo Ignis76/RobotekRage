@@ -88,7 +88,7 @@
         position: fixed;
         bottom: 80px;
         right: 20px;
-        background-color: rgba(255, 255, 255, 0.9);
+        background-color: white;
         border-radius: 10px;
         padding: 20px;
         box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
@@ -151,24 +151,22 @@
             </div>
           </div>
 
-          <div class="col-lg-4">
-            <nav class="site-navigation text-left mr-auto " role="navigation">
-              <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
-                <li><a href="about.html" class="nav-link">О нас</a></li>
-                <li><a href="blog.html" class="nav-link">Блог</a></li>
-                <li><a href="contact.html" class="nav-link">Контакты</a></li>
-                 <li>
-                   <a href="#" id="signInButton" class="nav-link" title="Войти">
-                       <button class="signin-button">
-                            <i class="fab fa-google" style="color:white;  flex-shrink: 0;"></i> 
-                             <span id="signInButtonText"></span>
-                        
-                      </button>
-                   </a>
-                </li>
-           </ul>
-        </nav>
-    </div>
+     <div class="col-lg-4">
+                <nav class="site-navigation text-left mr-auto " role="navigation">
+                    <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
+                        <li><a href="about.html" class="nav-link">О нас</a></li>
+                        <li><a href="blog.html" class="nav-link">Блог</a></li>
+                        <li><a href="contact.html" class="nav-link">Контакты</a></li>
+                        <li>
+                            <a href="#" id="signInButton" class="nav-link" title="Войти">
+                                <button class="signin-button">
+                                    <i class="fab fa-google" style="color:white;  flex-shrink: 0;"></i> 
+                                </button>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
 
         </div>
       </div>
@@ -248,7 +246,7 @@
         </div>
         <div class="col-lg-4">
           <div class="feature-1">
-            <img src="images/vid_2.jpg" alt="Image" class="img-fluid">
+            <img src="images/vid_2.png" alt="Image" class="img-fluid">
             <div class="feature-1-contents">
               <h2>Introduction to programming in FTC</h2>
               <p>How does programming work in FTC. How does the robot's hardware work with it's software.</p>
@@ -257,7 +255,7 @@
         </div>
         <div class="col-lg-4">
           <div class="feature-1">
-            <img src="images/vid_3.jpg" alt="Image" class="img-fluid">
+            <img src="images/vid_3.png" alt="Image" class="img-fluid">
             <div class="feature-1-contents">
               <h2>Presentation of the new FTC 2025 season</h2>
               <p>Introduction to the rules and tasks of First Tech Challenge 2025-2025 INTO THE DEEP</p>
@@ -436,24 +434,23 @@
       </div>
     </footer>
 
-    <button class="floating-button" onclick="toggleClickerMenu()" title="Открыть кликер">
-       <i class="fas fa-gamepad"></i>
-    </button>
-  
-    <div id="clickerMenu" class="clicker-menu">
-      <h2>Clicker Game</h2>
-       <p>Кликай и зарабатывай очки!</p>
-       <p id="score" class="badge badge-primary">Score: 0</p>
-        <p id="clickerDescription">Топ игроков получат призы от команды Robotek Rage на Central Asia в Алмате!</p>
-        <button id="clickButton" class="btn btn-success">
-          <i class="fas fa-hand-pointer"></i> Click Me!
-         </button>
-    </div>
+     <button class="floating-button" onclick="toggleClickerMenu()" title="Открыть кликер">
+        <i class="fas fa-gamepad"></i>
+     </button>
 
+        <div id="clickerMenu" class="clicker-menu">
+            <h2>Clicker Game</h2>
+            <p>Кликай и зарабатывай очки!</p>
+            <p id="score" class="badge badge-primary">Score: 0</p>
+           <p id="clickerDescription" class="text-muted">Топ игроков получат призы от команды Robotek Rage на Central Asia в Алмате!</p>
+            <button id="clickButton" class="btn btn-success">
+                <i class="fas fa-hand-pointer"></i> Click Me!
+             </button>
+        </div>
   </div>
   
 
- <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/owl.carousel.min.js"></script>
   <script src="js/jquery.sticky.js"></script>
@@ -464,17 +461,18 @@
   <script src="js/aos.js"></script>
 
   <script src="js/main.js"></script>
-  <script>
-  // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDaPh4tOyy8Q1QmYRf3WQBMwAOcyNCyGAA",
-            authDomain: "robotek-rage.firebaseapp.com",
-            projectId: "robotek-rage",
-            storageBucket: "robotek-rage.firebasestorage.app",
-            messagingSenderId: "862599723839",
-            appId: "1:862599723839:web:3c6feac98f80d28f14b18a",
-            measurementId: "G-KC22XB38KW"
-        };
+
+   <script>
+// Your web app's Firebase configuration
+    const firebaseConfig = {
+        apiKey: "AIzaSyDaPh4tOyy8Q1QmYRf3WQBMwAOcyNCyGAA",
+        authDomain: "robotek-rage.firebaseapp.com",
+        projectId: "robotek-rage",
+        storageBucket: "robotek-rage.firebasestorage.app",
+        messagingSenderId: "862599723839",
+        appId: "1:862599723839:web:3c6feac98f80d28f14b18a",
+        measurementId: "G-KC22XB38KW"
+    };
 
     function checkFirebaseConfiguration() {
        if (!firebaseConfig.apiKey || firebaseConfig.apiKey === "YOUR_API_KEY") {
@@ -483,7 +481,7 @@
            return false;
         }
         return true;
-     }
+   }
 
         // Initialize Firebase
             let app;
@@ -498,140 +496,95 @@
     const signInButton = document.getElementById('signInButton');
     const floatingButton = document.querySelector(".floating-button");
         let score = 0;
-      const scoreDisplay = document.getElementById("score");
-      const clickerMenu = document.getElementById("clickerMenu");
-         const clickerDescription = document.getElementById("clickerDescription");
-     let lastClickTime = 0;
+        const scoreDisplay = document.getElementById("score");
+        const clickerMenu = document.getElementById("clickerMenu");
+     const clickerDescription = document.getElementById("clickerDescription");
+        let lastClickTime = 0;
        const clickDelay = 200;
 
 // Set visibility to floating-button
- floatingButton.style.display =  "flex"  // Make it visible  all the time
+   floatingButton.style.display =  "flex"  // Make it visible  all the time
 
     // Function to update UI based on authentication state
     function updateSignInButton(user) {
         const button = document.getElementById('signInButton');
           if (user) {
-                button.innerHTML = `<i class="fas fa-sign-out-alt" style="color:white"></i> Выйти`;
+               button.innerHTML = `<i class="fas fa-sign-out-alt" style="color:white"></i>`;
                 button.title = "Выйти";
                  loadData();
                } else {
-                     button.innerHTML = `<i class="fab fa-google" style="color:white"></i> Войти`;
-                        button.title = "Войти";
+                   button.innerHTML = `<i class="fab fa-google" style="color:white"></i> Войти`;
+                    button.title = "Войти";
 
-                }
+               }
 
-    }
+   }
     // Check current auth state
-    auth.onAuthStateChanged((user) => {
-       updateSignInButton(user);
-    });
+        auth.onAuthStateChanged((user) => {
+           updateSignInButton(user);
+
+        });
    function toggleClickerMenu() {
             if (!auth.currentUser) {
                 alert("Please sign in to use the clicker game.");
                 return;
-          }
-        clickerMenu.style.display = clickerMenu.style.display === "none" ? "block" : "none";
-    }
-
- function resetClicker() {
-        score = 0;
-       updateScore();
-       saveData();
- }
-    function addPoint() {
-       if (!auth.currentUser) {
-            alert("Please sign in to use the clicker game.");
-             return;
-        }
-
-        const now = Date.now();
-         if (now - lastClickTime > clickDelay) {
-                score++;
-               updateScore();
-               saveData();
-               lastClickTime = now;
-         }
-  }
-
-  function updateScore() {
-        scoreDisplay.textContent = `Score: ${score}`;
- }
-     //Function to save data to firestore
-        function saveData() {
-           if (!auth.currentUser) return;
-          db.collection("users").doc(auth.currentUser.uid).set({
-            score: score
-           })
-            .then(() => console.log("Data saved successfully!"))
-           .catch((error) => console.error("Error saving data:", error));
-     }
-        // Load data from Firebase
-    function loadData() {
-          if (!auth.currentUser) {
-             resetClicker();
-              return;
            }
-        db.collection("users").doc(auth.currentUser.uid).get()
-              .then((doc) => {
-                  if (doc.exists) {
-                      score = doc.data().score || 0;
-                         updateScore();
-                         console.log("Data loaded successfully:", score);
-                    } else {
-                      console.log("No data found, setting to 0");
-                         resetClicker();
-                         saveData();
-                 }
-         })
-         .catch((error) => console.error("Error loading data:", error));
+       clickerMenu.style.display = clickerMenu.style.display === "none" ? "block" : "none";
    }
 
- // Sign-in function
-   signInButton.addEventListener('click', function() {
-        if (!checkFirebaseConfiguration()) return;
-        if (auth.currentUser) {
-              // Sign out
-               auth.signOut()
-                  .then(() => {
-                    console.log('User signed out');
-                     alert('You have been signed out.');
-                      updateSignInButton(null);
-                        resetClicker();
-                  })
-              .catch((error) => {
-                    console.error('Sign-out error:', error);
-                    let errorMessage = "Sign-out failed.";
-                      alert(errorMessage);
-                  });
-       } else {
-               // Sign in
-                 const provider = new firebase.auth.GoogleAuthProvider();
-                 provider.setCustomParameters({
-                            prompt: 'select_account' // Force account selection
-                     });
-               auth.signInWithPopup(provider)
-                    .then((result) => {
-                         // User is signed in
-                           const user = result.user;
-                           console.log("User signed in:", user);
-                            alert(`Welcome, ${user.displayName}!`);
-                            updateSignInButton(user);
-                             // Load data
-                              loadData();
-                     })
-               .catch((error) => {
-                   let errorMessage = "Sign-in failed.";
-                     if (error.code === 'auth/popup-closed-by-user') {
-                         errorMessage = "Sign-in popup was closed.";
-                         } else if (error.code === 'auth/unauthorized-domain') {
-                              errorMessage = "This domain is not authorized.  Please authorize it in the Firebase console.";
-                        }
-                       alert(errorMessage);
-                  console.error("Sign-in error:", error);
-                     alert("Sign-in failed: " + error.message);
-                });
+     function resetClicker() {
+            score = 0;
+           updateScore();
+           saveData();
+   }
+ function addPoint() {
+           if (!auth.currentUser) {
+                alert("Please sign in to use the clicker game.");
+                  return;
+             }
+
+           const now = Date.now();
+            if (now - lastClickTime > clickDelay) {
+                    score++;
+                    updateScore();
+                      saveData();
+                      lastClickTime = now;
+          }
      }
-  });
+  function updateScore() {
+      scoreDisplay.textContent = `Score: ${score}`;
+   }
+
+    //Function to save data to firestore
+     function saveData() {
+         if (!auth.currentUser) return;
+
+         db.collection("users").doc(auth.currentUser.uid).set({
+              score: score
+          })
+            .then(() => console.log("Data saved successfully!"))
+           .catch((error) => console.error("Error saving data:", error));
+  }
+      // Load data from Firebase
+      function loadData() {
+            if (!auth.currentUser) {
+               resetClicker();
+                 return;
+           }
+        db.collection("users").doc(auth.currentUser.uid).get()
+             .then((doc) => {
+                    if (doc.exists) {
+                        score = doc.data().score || 0;
+                        updateScore();
+                         console.log("Data loaded successfully:", score);
+                   } else {
+                      console.log("No data found, setting to 0");
+                        resetClicker();
+                       saveData();
+                   }
+        })
+        .catch((error) => console.error("Error loading data:", error));
+ }
 </script>
 
 </body>
