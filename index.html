@@ -12,6 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <link rel="stylesheet" href="fonts/icomoon/style.css">
 
@@ -27,10 +28,41 @@
 
   <title>Robotek Rage</title>
 
+  <!-- Firebase libraries -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-analytics-compat.js"></script>
+
+  <style>
+    /* Style for the sign-in button */
+    .signin-button {
+       background-color: transparent;
+        color: white;
+        padding: 0.5em 0.7em;
+        cursor: pointer;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+        margin-left: 5px;
+    }
+
+    .signin-button:hover {
+       background-color: rgba(255, 255, 255, 0.2);
+    }
+
+  /* For the menu, add display: flex, and adjust the margins */
+.right-aligned-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically center items */
+}
+  </style>
+
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-
 
   <div class="site-wrap" id="home-section">
 
@@ -43,10 +75,7 @@
       <div class="site-mobile-menu-body"></div>
     </div>
 
-
-
-    <header class="site-navbar site-navbar-target" role="banner">
-
+ <header class="site-navbar site-navbar-target" role="banner">
       <div class="container">
         <div class="row align-items-center position-relative">
 
@@ -59,28 +88,37 @@
               </ul>
             </nav>
           </div>
+
           <div class="col-lg-4 text-center">
             <div class="site-logo">
               <a href="index.html">Robotek Rage</a>
             </div>
-
-
-            <div class="ml-auto toggle-button d-inline-block d-lg-none"><a href="#" class="site-menu-toggle py-5 js-menu-toggle text-white"><span class="icon-menu h3 text-white"></span></a></div>
+            <div class="ml-auto toggle-button d-inline-block d-lg-none">
+              <a href="#" class="site-menu-toggle py-5 js-menu-toggle text-white">
+                <span class="icon-menu h3 text-white"></span>
+              </a>
+            </div>
           </div>
+
           <div class="col-lg-4">
             <nav class="site-navigation text-left mr-auto " role="navigation">
-              <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
+              <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block right-aligned-menu">
                 <li><a href="about.html" class="nav-link">О нас</a></li>
                 <li><a href="blog.html" class="nav-link">Блог</a></li>
                 <li><a href="contact.html" class="nav-link">Контакты</a></li>
-              </ul>
+                  <li>
+                    <a href="#" id="signInButton" class="nav-link" title="Войти">
+                      <button class="signin-button">
+                        <i class="fab fa-google"></i>
+                      </button>
+                    </a>
+                  </li>
+               </ul>
             </nav>
           </div>
 
-
         </div>
       </div>
-
     </header>
 
     <div class="ftco-blocks-cover-1">
@@ -167,7 +205,7 @@
         </div>
         <div class="col-lg-4">
           <div class="feature-1">
-            <img src="images/vid_3.jpg" alt="Image" class="img-fluid">
+            <img src="images/vid_3.png" alt="Image" class="img-fluid">
             <div class="feature-1-contents">
               <h2>Presentation of the new FTC 2025 season</h2>
               <p>Introduction to the rules and tasks of First Tech Challenge 2024-2025 INTO THE DEEP</p>
@@ -212,8 +250,8 @@
 
     <div class="site-section section-2">
       <div class="container">
-        <div class="row justify-content-center text-center section-2-title">
-          <div class="col-md-7">
+        <div class="row justify-content-center text-center mb-5">
+          <div class="col-md-6">
             <span class="text-primary">Цель нашей команды</span>
             <h2 class="mb-2">Мы всегда рады делиться знаниями!</h2>
             <p class="opacity-5">Мы хотим помочь новичкам с началом их пути. Для этого мы создали онлайн платформу где они могут найти различные статьи, видеоуроки и CAD модели</p>
@@ -254,47 +292,6 @@
         </div>
       </div>
 
-    </div>
-    
-    <div class="container site-section">
-      <div class="row justify-content-center text-center mb-5">
-        <div class="col-md-6">
-          <span class="text-primary">Этапы разработки робота</span>
-          <h2 class="mb-4">Основные стадии разработки робота</h2>
-        </div>
-      </div>
-    
-      <div class="row justify-content-center">
-        <div class="col-lg-7">
-          <div class="row">
-            <div class="col-lg-6 mr-auto pr-lg-5">
-              <div class="feature-3">
-                <h3>Исследование и анализ</h3>
-                <p>Изучите задачи и требования для вашего робота, чтобы понять, какие функции он должен выполнять.</p>
-              </div>
-            </div>
-            <div class="col-lg-6 ml-auto pl-lg-5">
-              <div class="feature-3">
-                <h3>Проектирование</h3>
-                <p>Создайте концепцепт робота и CAD-модели, а также определите необходимые компоненты.</p>
-              </div>
-            </div>
-    
-            <div class="col-lg-6 mr-auto pr-lg-5">
-              <div class="feature-3">
-                <h3>Сборка Робота </h3>
-                <p>Соберите робота, учитывая все детали и особенности конструкции. Убедитесь, что все компоненты закреплены и функционируют правильно.</p>
-              </div>
-            </div>
-            <div class="col-lg-6 ml-auto pl-lg-5">
-              <div class="feature-3">
-                <h3>Программирование и тестирование</h3>
-                <p>Сделайие программну для робота и проведите тесты различных кейсов для проверки функционала.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
     
     <div class="site-section bg-light">
@@ -390,8 +387,8 @@
     
 
   </div>
-
-  <script src="js/jquery-3.3.1.min.js"></script>
+  
+ <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/bootstrap.bundle.min"></script>
   <script src="js/owl.carousel.min.js"></script>
   <script src="js/jquery.sticky.js"></script>
@@ -402,7 +399,96 @@
   <script src="js/aos.js"></script>
 
   <script src="js/main.js"></script>
+  <script>
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyDaPh4tOyy8Q1QmYRf3WQBMwAOcyNCyGAA",
+      authDomain: "robotek-rage.firebaseapp.com",
+      projectId: "robotek-rage",
+      storageBucket: "robotek-rage.firebasestorage.app",
+      messagingSenderId: "862599723839",
+      appId: "1:862599723839:web:3c6feac98f80d28f14b18a",
+      measurementId: "G-KC22XB38KW"
+    };
 
+    function checkFirebaseConfiguration() {
+       if (!firebaseConfig.apiKey || firebaseConfig.apiKey === "YOUR_API_KEY") {
+          console.error("Firebase configuration is missing.  Please ensure you have populated the firebaseConfig object with your project's credentials.");
+          alert("Firebase Configuration Missing, please check the console for more information.");
+           return false;
+        }
+        return true;
+   }
+
+   // Initialize Firebase
+        try {
+            firebase.initializeApp(firebaseConfig);
+        } catch (error) {
+            console.error("Firebase initialization error:", error);
+            alert("Firebase initialization error: " + error.message);
+        }
+
+
+    const auth = firebase.auth();
+    const signInButton = document.getElementById('signInButton');
+
+    // Function to update UI based on authentication state
+    function updateSignInButton(user) {
+      const button = document.getElementById('signInButton');
+      if (user) {
+        button.innerHTML = '<i class="fas fa-sign-out-alt" style="color:white"></i>';
+      } else {
+        button.innerHTML = '<i class="fab fa-google" style="color:white"></i>';
+      }
+        button.title = user ? "Выйти" : "Войти";
+    }
+
+    // Check current auth state
+    auth.onAuthStateChanged((user) => {
+      updateSignInButton(user);
+    });
+
+    // Sign-in function
+    signInButton.addEventListener('click', function() {
+            if (!checkFirebaseConfiguration()) return;
+            if (auth.currentUser) {
+                // Sign out
+                auth.signOut()
+                    .then(() => {
+                        console.log('User signed out');
+                        alert('You have been signed out.');
+                        updateSignInButton(null);
+                    })
+                    .catch((error) => {
+                        console.error('Sign-out error:', error);
+                        alert('Sign-out failed: ' + error.message);
+                    });
+            } else {
+                // Sign in
+                const provider = new firebase.auth.GoogleAuthProvider();
+                auth.signInWithPopup(provider)
+                    .then((result) => {
+                        // User is signed in
+                        const user = result.user;
+                        console.log("User signed in:", user);
+                        alert(`Welcome, ${user.displayName}!`);
+                        updateSignInButton(user);
+                    })
+                    .catch((error) => {
+              console.log("Sign-in error:", error.code, error.message);
+                // Show a user-friendly error message
+                let errorMessage = "Sign-in failed.";
+                if (error.code === 'auth/popup-closed-by-user') {
+                    errorMessage = "Sign-in popup was closed.";
+                } else if (error.code === 'auth/unauthorized-domain') {
+                    errorMessage = "This domain is not authorized.  Please authorize it in the Firebase console.";
+                }
+                alert(errorMessage);
+                        console.error("Sign-in error:", error);
+                        alert("Sign-in failed: " + error.message);
+                    });
+            }
+        });
+  </script>
 </body>
-
 </html>
