@@ -46,18 +46,17 @@
         border-radius: 5px;
         transition: background-color 0.3s;
         margin-left: 5px;
+        display: flex;
+        align-items: center;
     }
 
     .signin-button:hover {
        background-color: rgba(255, 255, 255, 0.2);
     }
+   .signin-button i {
+       margin-right: 5px;
+    }
 
-  /* For the menu, add display: flex, and adjust the margins */
-.right-aligned-menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center; /* Vertically center items */
-}
   </style>
 
 </head>
@@ -75,7 +74,7 @@
       <div class="site-mobile-menu-body"></div>
     </div>
 
- <header class="site-navbar site-navbar-target" role="banner">
+<header class="site-navbar site-navbar-target" role="banner">
       <div class="container">
         <div class="row align-items-center position-relative">
 
@@ -100,22 +99,23 @@
             </div>
           </div>
 
-          <div class="col-lg-4">
-            <nav class="site-navigation text-left mr-auto " role="navigation">
-              <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block right-aligned-menu">
-                <li><a href="about.html" class="nav-link">О нас</a></li>
-                <li><a href="blog.html" class="nav-link">Блог</a></li>
-                <li><a href="contact.html" class="nav-link">Контакты</a></li>
-                  <li>
-                    <a href="#" id="signInButton" class="nav-link" title="Войти">
-                      <button class="signin-button">
-                        <i class="fab fa-google"></i>
-                      </button>
-                    </a>
-                  </li>
-               </ul>
-            </nav>
-          </div>
+            <div class="col-lg-4">
+                <nav class="site-navigation text-left mr-auto " role="navigation">
+                    <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
+                        <li><a href="about.html" class="nav-link">О нас</a></li>
+                        <li><a href="blog.html" class="nav-link">Блог</a></li>
+                        <li><a href="contact.html" class="nav-link">Контакты</a></li>
+                        <li>
+                            <a href="#" id="signInButton" class="nav-link" title="Войти">
+                                <button class="signin-button">
+                                    <i class="fab fa-google" style="color:white"></i>
+                                    <span id="signInButtonText" style="color:white">Войти</span>
+                                </button>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
 
         </div>
       </div>
@@ -195,7 +195,7 @@
         </div>
         <div class="col-lg-4">
           <div class="feature-1">
-            <img src="images/vid_2.jpg" alt="Image" class="img-fluid">
+            <img src="images/vid_2.png" alt="Image" class="img-fluid">
             <div class="feature-1-contents">
               <h2>Introduction to programming in FTC</h2>
               <p>How does programming work in FTC. How does the robot's hardware work with it's software.</p>
@@ -399,57 +399,58 @@
   <script src="js/aos.js"></script>
 
   <script src="js/main.js"></script>
-  <script>
-    // Your web app's Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyDaPh4tOyy8Q1QmYRf3WQBMwAOcyNCyGAA",
-      authDomain: "robotek-rage.firebaseapp.com",
-      projectId: "robotek-rage",
-      storageBucket: "robotek-rage.firebasestorage.app",
-      messagingSenderId: "862599723839",
-      appId: "1:862599723839:web:3c6feac98f80d28f14b18a",
-      measurementId: "G-KC22XB38KW"
-    };
+   <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDaPh4tOyy8Q1QmYRf3WQBMwAOcyNCyGAA",
+            authDomain: "robotek-rage.firebaseapp.com",
+            projectId: "robotek-rage",
+            storageBucket: "robotek-rage.firebasestorage.app",
+            messagingSenderId: "862599723839",
+            appId: "1:862599723839:web:3c6feac98f80d28f14b18a",
+            measurementId: "G-KC22XB38KW"
+        };
 
-    function checkFirebaseConfiguration() {
-       if (!firebaseConfig.apiKey || firebaseConfig.apiKey === "YOUR_API_KEY") {
-          console.error("Firebase configuration is missing.  Please ensure you have populated the firebaseConfig object with your project's credentials.");
-          alert("Firebase Configuration Missing, please check the console for more information.");
-           return false;
+        function checkFirebaseConfiguration() {
+           if (!firebaseConfig.apiKey || firebaseConfig.apiKey === "YOUR_API_KEY") {
+              console.error("Firebase configuration is missing.  Please ensure you have populated the firebaseConfig object with your project's credentials.");
+              alert("Firebase Configuration Missing, please check the console for more information.");
+               return false;
+            }
+            return true;
+       }
+
+        // Initialize Firebase
+            try {
+                firebase.initializeApp(firebaseConfig);
+            } catch (error) {
+                console.error("Firebase initialization error:", error);
+                alert("Firebase initialization error: " + error.message);
+            }
+
+        const auth = firebase.auth();
+        const signInButton = document.getElementById('signInButton');
+
+        // Function to update UI based on authentication state
+        function updateSignInButton(user) {
+          const button = document.getElementById('signInButton');
+          if (user) {
+            button.innerHTML = '<i class="fas fa-sign-out-alt" style="color:white"></i>';
+               button.title = "Выйти";
+          } else {
+            button.innerHTML = '<i class="fab fa-google" style="color:white"></i>';
+               button.title = "Войти";
+          }
+
         }
-        return true;
-   }
 
-   // Initialize Firebase
-        try {
-            firebase.initializeApp(firebaseConfig);
-        } catch (error) {
-            console.error("Firebase initialization error:", error);
-            alert("Firebase initialization error: " + error.message);
-        }
+        // Check current auth state
+        auth.onAuthStateChanged((user) => {
+          updateSignInButton(user);
+        });
 
-
-    const auth = firebase.auth();
-    const signInButton = document.getElementById('signInButton');
-
-    // Function to update UI based on authentication state
-    function updateSignInButton(user) {
-      const button = document.getElementById('signInButton');
-      if (user) {
-        button.innerHTML = '<i class="fas fa-sign-out-alt" style="color:white"></i>';
-      } else {
-        button.innerHTML = '<i class="fab fa-google" style="color:white"></i>';
-      }
-        button.title = user ? "Выйти" : "Войти";
-    }
-
-    // Check current auth state
-    auth.onAuthStateChanged((user) => {
-      updateSignInButton(user);
-    });
-
-    // Sign-in function
-    signInButton.addEventListener('click', function() {
+        // Sign-in function
+        signInButton.addEventListener('click', function() {
             if (!checkFirebaseConfiguration()) return;
             if (auth.currentUser) {
                 // Sign out
@@ -461,11 +462,15 @@
                     })
                     .catch((error) => {
                         console.error('Sign-out error:', error);
-                        alert('Sign-out failed: ' + error.message);
+                         let errorMessage = "Sign-out failed.";
+                         alert(errorMessage);
                     });
             } else {
                 // Sign in
                 const provider = new firebase.auth.GoogleAuthProvider();
+                 provider.setCustomParameters({
+                      prompt: 'select_account' // Force account selection
+                 });
                 auth.signInWithPopup(provider)
                     .then((result) => {
                         // User is signed in
@@ -475,16 +480,15 @@
                         updateSignInButton(user);
                     })
                     .catch((error) => {
-              console.log("Sign-in error:", error.code, error.message);
-                // Show a user-friendly error message
-                let errorMessage = "Sign-in failed.";
-                if (error.code === 'auth/popup-closed-by-user') {
-                    errorMessage = "Sign-in popup was closed.";
-                } else if (error.code === 'auth/unauthorized-domain') {
-                    errorMessage = "This domain is not authorized.  Please authorize it in the Firebase console.";
-                }
-                alert(errorMessage);
-                        console.error("Sign-in error:", error);
+                      // An error happened.
+                    let errorMessage = "Sign-in failed.";
+                    if (error.code === 'auth/popup-closed-by-user') {
+                        errorMessage = "Sign-in popup was closed.";
+                    } else if (error.code === 'auth/unauthorized-domain') {
+                        errorMessage = "This domain is not authorized.  Please authorize it in the Firebase console.";
+                    }
+                    alert(errorMessage);
+                   console.error("Sign-in error:", error);
                         alert("Sign-in failed: " + error.message);
                     });
             }
