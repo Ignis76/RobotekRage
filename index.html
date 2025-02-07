@@ -536,26 +536,30 @@
      const clickerDescription = document.getElementById("clickerDescription");
        let lastClickTime = 0;
        const clickDelay = 200;
+       let isLoggedIn = false; // Track login status
+
     // Function to update UI based on authentication state
-        function updateSignInButton(user) {
-            const button = document.getElementById('signInButton');
-          if (user) {
-                button.innerHTML = `<i class="fas fa-sign-out-alt" style="color:white"></i>`;
-                button.title = "Выйти";
-              
-               } else {
-                 button.innerHTML = `<i class="fab fa-google" style="color:white"></i> Войти`;
-                button.title = "Войти";
-            }
-     floatingButton.style.display = user ? 'flex' : 'none';
- }
+    function updateSignInButton(user) {
+        const button = document.getElementById('signInButton');
+        isLoggedIn = !!user; // Update login status
+        if (user) {
+            button.innerHTML = `<i class="fas fa-sign-out-alt" style="color:white"></i>`;
+            button.title = "Выйти";
+        } else {
+            button.innerHTML = `<i class="fab fa-google" style="color:white"></i> Войти`;
+            button.title = "Войти";
+        }
+        floatingButton.style.display = 'flex'; // Always show the button
+    }
+
     // Check current auth state
-        auth.onAuthStateChanged((user) => {
-           updateSignInButton(user);
-            if (user) {
-                 loadData();
-            }
-        });
+    auth.onAuthStateChanged((user) => {
+        updateSignInButton(user);
+        if (user) {
+            loadData();
+        }
+    });
+
 
     // Sign-in function
     signInButton.addEventListener('click', function() {
@@ -565,8 +569,8 @@
              auth.signOut()
                 .then(() => {
                     console.log('User signed out');
-                     alert('You have been signed out.');
-                   updateSignInButton(null);
+                   //  alert('You have been signed out.'); // Removed the alert
+                    updateSignInButton(null);
                     resetClicker();
                })
             .catch((error) => {
@@ -585,7 +589,7 @@
                     // User is signed in
                   const user = result.user;
                   console.log("User signed in:", user);
-                  alert(`Welcome, ${user.displayName}!`);
+                 // alert(`Welcome, ${user.displayName}!`); // Removed the alert
                   updateSignInButton(user);
                        // Load data
                        loadData();
@@ -609,11 +613,7 @@
        clickButton.addEventListener('click', addPoint); // Attach the click event to clickButton
 
         function toggleClickerMenu() {
-                if (!auth.currentUser) {
-                    alert("Please sign in to use the clicker game.");
-                    return;
-               }
-              clickerMenu.style.display = clickerMenu.style.display === "none" ? "block" : "none";
+             clickerMenu.style.display = clickerMenu.style.display === "none" ? "block" : "none";
         }
 
      function resetClicker() {
@@ -622,26 +622,27 @@
             saveData();
        }
   function addPoint() {
-            if (!auth.currentUser) {
-                 alert("Please sign in to use the clicker game.");
-                    return;
-              }
-
-            const now = Date.now();
-               if (now - lastClickTime > clickDelay) {
+            if (isLoggedIn) {
+                const now = Date.now();
+                if (now - lastClickTime > clickDelay) {
                     score++;
-                   updateScore();
-                     saveData();
-                lastClickTime = now;
+                    updateScore();
+                    saveData();
+                    lastClickTime = now;
+                }
+            } else {
+                score++;
+                updateScore();
+
             }
-         }
+        }
 
         function updateScore() {
           scoreDisplay.textContent = `Score: ${score}`;
       }
          //Function to save data to firestore
    function saveData() {
-            if (!auth.currentUser) return;
+            if (!isLoggedIn) return;
             db.collection("users").doc(auth.currentUser.uid).set({
                  score: score
             })
@@ -649,7 +650,7 @@
              .catch((error) => console.error("Error saving data:", error));
         }
     function loadData() {
-        if (!auth.currentUser) {
+        if (!isLoggedIn) {
              resetClicker();
                 return;
           }
@@ -667,6 +668,13 @@
            })
            .catch((error) => console.error("Error loading data:", error));
     }
+     // Close clicker menu on outside click
+        document.addEventListener('click', function(event) {
+            const isClickInsideMenu = clickerMenu.contains(event.target) || floatingButton.contains(event.target);
+            if (!isClickInsideMenu && clickerMenu.style.display === 'block') {
+                clickerMenu.style.display = 'none';
+            }
+        });
   </script>
 </body>
 </html>
