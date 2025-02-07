@@ -78,76 +78,41 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 1000;
-        transition: background-color 0.3s, transform 0.2s;
+        z-index: 1000; /* Ensure it's on top of other elements */
     }
 
     .floating-button:hover {
         background-color: rgba(0, 0, 0, 0.8);
-        transform: scale(1.1);
     }
 
-   /* Style for the improved clicker menu */
+    /* Style for the clicker menu */
     .clicker-menu {
         position: fixed;
         bottom: 80px;
         right: 20px;
-       background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white */
-        border-radius: 15px;
+        background-color: white;
+        border-radius: 10px;
         padding: 20px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Softer shadow */
-       display: none;
-        z-index: 999;
+        box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+        display: none; /* Hidden by default */
+        z-index: 999; /* Ensure it's above floating button */
         text-align: center;
-        animation: slideIn 0.3s forwards;
-        max-width: 320px; /* Increase width for better layout */
-        font-family: 'Roboto', sans-serif; /* Modern font */
-    }
-    
-  @keyframes slideIn {
-          from {
-              right: -320px;
-                opacity: 0;
-            }
-           to {
-              right: 20px;
-               opacity: 1;
-          }
     }
 
-       /* Improve overall look with bootstrap */
-
-     .clicker-button {
-        background-color: #28a745; /* Green */
-         border: none;
-         color: white;
-         padding: 12px 24px;
-         font-size: 16px;
-         margin: 8px 4px; /* Add some spacing */
-         cursor: pointer;
-         border-radius: 8px;   /* More rounded corners */
-          transition: background-color 0.3s, transform 0.2s;
-      }
-
-    .clicker-button:hover {
-         background-color: #218838;  /* Darker Green */
-         transform: scale(1.05);
-        }
-  
-   #score {
-        font-size: 22px;  /* Larger score */
-        font-weight: bold;
-          margin-bottom: 15px;
-      }
-
-  /* Description text style */
-    #clickerDescription {
-          font-size: 14px;
-          color: #555;
-           margin-top: 10px;
-       }
+    .clicker-button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
 </style>
-
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -188,17 +153,19 @@
             </div>
           </div>
 
-   <div class="col-lg-4">
+    <div class="col-lg-4">
         <nav class="site-navigation text-left mr-auto " role="navigation">
             <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
                 <li><a href="about.html" class="nav-link">О нас</a></li>
                 <li><a href="blog.html" class="nav-link">Блог</a></li>
                 <li><a href="contact.html" class="nav-link">Контакты</a></li>
                 <li>
-                   <a href="#" id="signInButton" class="nav-link" title="Войти">
-                       <button class="signin-button">
+                    <a href="#" id="signInButton" class="nav-link" title="Войти">
+                        <button class="signin-button">
                             <i class="fab fa-google" style="color:white;  flex-shrink: 0;"></i> 
-                       </button>
+                             <span id="signInButtonText">Войти</span>
+                        
+                      </button>
                    </a>
                 </li>
            </ul>
@@ -322,7 +289,7 @@
         </div>
         <div class="col-lg-4">
           <div class="feature-1">
-            <img src="images/vid_6.png" alt="Image" class="img-fluid">
+            <img src="images/vid_6.jpg" alt="Image" class="img-fluid">
             <div class="feature-1-contents">
               <h2>Basics of Autonomous Programming in FTC</h2>
               <p>Beginner Tutorial: Programming an Autonomous for FIRST Tech Challenge</p>
@@ -478,8 +445,8 @@
             <h2>Clicker Game</h2>
             <p>Кликай и зарабатывай очки!</p>
             <p id="score" class="badge badge-primary">Score: 0</p>
-            <p id="clickerDescription">Топ игроков получат призы от команды Robotek Rage на Central Asia в Алмате!</p>
-            <button id="clickButton" class="clicker-button">
+           <p id="clickerDescription" class="text-muted">Топ игроков получат призы от команды Robotek Rage на Central Asia в Алмате!</p>
+            <button id="clickButton" class="btn btn-success">
                 <i class="fas fa-hand-pointer"></i> Click Me!
              </button>
         </div>
@@ -497,17 +464,18 @@
   <script src="js/aos.js"></script>
 
   <script src="js/main.js"></script>
-<script>
-        // Your web app's Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDaPh4tOyy8Q1QmYRf3WQBMwAOcyNCyGAA",
-            authDomain: "robotek-rage.firebaseapp.com",
-            projectId: "robotek-rage",
-            storageBucket: "robotek-rage.firebasestorage.app",
-            messagingSenderId: "862599723839",
-            appId: "1:862599723839:web:3c6feac98f80d28f14b18a",
-            measurementId: "G-KC22XB38KW"
-        };
+
+   <script>
+ // Your web app's Firebase configuration
+   const firebaseConfig = {
+        apiKey: "AIzaSyDaPh4tOyy8Q1QmYRf3WQBMwAOcyNCyGAA",
+        authDomain: "robotek-rage.firebaseapp.com",
+        projectId: "robotek-rage",
+        storageBucket: "robotek-rage.firebasestorage.app",
+        messagingSenderId: "862599723839",
+        appId: "1:862599723839:web:3c6feac98f80d28f14b18a",
+        measurementId: "G-KC22XB38KW"
+    };
 
     function checkFirebaseConfiguration() {
        if (!firebaseConfig.apiKey || firebaseConfig.apiKey === "YOUR_API_KEY") {
@@ -516,157 +484,112 @@
            return false;
         }
         return true;
-   }
+    }
 
         // Initialize Firebase
-            let app;
-            try {
-                app = firebase.initializeApp(firebaseConfig);
-            } catch (error) {
-                console.error("Firebase initialization error:", error);
-                alert("Firebase initialization error: " + error.message);
-            }
+    let app;
+       try {
+         app = firebase.initializeApp(firebaseConfig);
+        } catch (error) {
+               console.error("Firebase initialization error:", error);
+               alert("Firebase initialization error: " + error.message);
+         }
+
     const auth = firebase.auth();
     const db = firebase.firestore();
     const signInButton = document.getElementById('signInButton');
-    const floatingButton = document.querySelector(".floating-button");
-       let score = 0;
+        const floatingButton = document.querySelector(".floating-button");
+        let score = 0;
         const scoreDisplay = document.getElementById("score");
-        const clickerMenu = document.getElementById("clickerMenu");
-     const clickerDescription = document.getElementById("clickerDescription");
-       let lastClickTime = 0;
-       const clickDelay = 200;
+      const clickerMenu = document.getElementById("clickerMenu");
+         let lastClickTime = 0;
+         const clickDelay = 200;
+
+    floatingButton.style.zIndex = "1000";
+
     // Function to update UI based on authentication state
         function updateSignInButton(user) {
             const button = document.getElementById('signInButton');
-          if (user) {
-                button.innerHTML = `<i class="fas fa-sign-out-alt" style="color:white"></i>`;
+            if (user) {
+                 button.innerHTML = `<i class="fas fa-sign-out-alt" style="color:white"></i>`;
                 button.title = "Выйти";
-              
+
+                    floatingButton.style.display =  "flex";
+                    loadData();
                } else {
-                 button.innerHTML = `<i class="fab fa-google" style="color:white"></i> Войти`;
-                button.title = "Войти";
-            }
-     floatingButton.style.display = user ? 'flex' : 'none';
- }
+                    button.innerHTML = `<i class="fab fa-google" style="color:white"></i> Войти`;
+                     button.title = "Войти";
+
+                }
+
+         }
+
     // Check current auth state
         auth.onAuthStateChanged((user) => {
            updateSignInButton(user);
-            if (user) {
-                 loadData();
-            }
+
         });
 
-    // Sign-in function
-    signInButton.addEventListener('click', function() {
-        if (!checkFirebaseConfiguration()) return;
-        if (auth.currentUser) {
-            // Sign out
-             auth.signOut()
-                .then(() => {
-                    console.log('User signed out');
-                     alert('You have been signed out.');
-                   updateSignInButton(null);
-                    resetClicker();
-               })
-            .catch((error) => {
-                console.error('Sign-out error:', error);
-                let errorMessage = "Sign-out failed.";
-                     alert(errorMessage);
-               });
-         } else {
-                // Sign in
-            const provider = new firebase.auth.GoogleAuthProvider();
-                provider.setCustomParameters({
-                     prompt: 'select_account' // Force account selection
-                 });
-             auth.signInWithPopup(provider)
-                 .then((result) => {
-                    // User is signed in
-                  const user = result.user;
-                  console.log("User signed in:", user);
-                  alert(`Welcome, ${user.displayName}!`);
-                  updateSignInButton(user);
-                       // Load data
-                       loadData();
-                })
-            .catch((error) => {
-                    let errorMessage = "Sign-in failed.";
-                   if (error.code === 'auth/popup-closed-by-user') {
-                        errorMessage = "Sign-in popup was closed.";
-                    } else if (error.code === 'auth/unauthorized-domain') {
-                         errorMessage = "This domain is not authorized.  Please authorize it in the Firebase console.";
-                   }
-                    alert(errorMessage);
-                console.error("Sign-in error:", error);
-                    alert("Sign-in failed: " + error.message);
-                 });
-        }
-    });
- // Clicker Game Logic
-    const clickButton = document.getElementById("clickButton");
+    function toggleClickerMenu() {
+          if (!auth.currentUser) {
+             alert("Please sign in to use the clicker game.");
+               return;
+           }
+        clickerMenu.style.display = clickerMenu.style.display === "none" ? "block" : "none";
+    }
 
-       clickButton.addEventListener('click', addPoint); // Attach the click event to clickButton
+    function resetClicker() {
+        score = 0;
+         updateScore();
+         saveData();
+    }
 
-        function toggleClickerMenu() {
-                if (!auth.currentUser) {
-                    alert("Please sign in to use the clicker game.");
-                    return;
-               }
-              clickerMenu.style.display = clickerMenu.style.display === "none" ? "block" : "none";
-        }
-
-     function resetClicker() {
-            score = 0;
-           updateScore();
-            saveData();
-       }
   function addPoint() {
-            if (!auth.currentUser) {
-                 alert("Please sign in to use the clicker game.");
-                    return;
-              }
-
-            const now = Date.now();
-               if (now - lastClickTime > clickDelay) {
-                    score++;
-                   updateScore();
-                     saveData();
-                lastClickTime = now;
-            }
-         }
-
-        function updateScore() {
-          scoreDisplay.textContent = `Score: ${score}`;
+        if (!auth.currentUser) {
+             alert("Please sign in to use the clicker game.");
+               return;
+          }
+//AntiClicker Protection
+      const now = Date.now();
+             if (now - lastClickTime > clickDelay) {
+                score++;
+                 updateScore();
+                 saveData();
+                 lastClickTime = now;
       }
-         //Function to save data to firestore
-   function saveData() {
+  }
+        function updateScore() {
+            scoreDisplay.textContent = `Score: ${score}`;
+     }
+      //Function to save data to firestore
+         function saveData() {
             if (!auth.currentUser) return;
             db.collection("users").doc(auth.currentUser.uid).set({
                  score: score
             })
-         .then(() => console.log("Data saved successfully!"))
-             .catch((error) => console.error("Error saving data:", error));
+            .then(() => console.log("Data saved successfully!"))
+           .catch((error) => console.error("Error saving data:", error));
         }
-    function loadData() {
-        if (!auth.currentUser) {
-             resetClicker();
-                return;
-          }
+ // Load data from Firebase
+     function loadData() {
+             if (!auth.currentUser) {
+                 resetClicker();
+                   return;
+              }
            db.collection("users").doc(auth.currentUser.uid).get()
                 .then((doc) => {
-                   if (doc.exists) {
+                    if (doc.exists) {
                         score = doc.data().score || 0;
-                       updateScore();
-                         console.log("Data loaded successfully:", score);
+                          updateScore();
+                           console.log("Data loaded successfully:", score);
                    } else {
-                      console.log("No data found, setting to 0");
-                      resetClicker();
-                        saveData();
-                   }
-           })
-           .catch((error) => console.error("Error loading data:", error));
-    }
+                       console.log("No data found, setting to 0");
+                         resetClicker();
+                         saveData();
+                 }
+        })
+        .catch((error) => console.error("Error loading data:", error));
+ }
   </script>
 </body>
 </html>
