@@ -622,20 +622,19 @@
             saveData();
        }
   function addPoint() {
-            if (isLoggedIn) {
-                const now = Date.now();
-                if (now - lastClickTime > clickDelay) {
-                    score++;
-                    updateScore();
-                    saveData();
-                    lastClickTime = now;
-                }
-            } else {
-                score++;
-                updateScore();
-
-            }
+      if (!isLoggedIn) {
+            alert("Пожалуйста, войдите в аккаунт, чтобы кликать!");
+            return;
         }
+
+        const now = Date.now();
+        if (now - lastClickTime > clickDelay) {
+            score++;
+            updateScore();
+            saveData();
+            lastClickTime = now;
+        }
+    }
 
         function updateScore() {
           scoreDisplay.textContent = `Score: ${score}`;
