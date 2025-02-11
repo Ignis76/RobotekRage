@@ -14,13 +14,13 @@
     <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
     <link rel="stylesheet" href="css/aos.css">
     <link rel="stylesheet" href="css/style.css">
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto&display=swap" rel="stylesheet">
 
     <style>
-    body {
-        font-family: 'Roboto', sans-serif;
-        font-family: 'Montserrat', sans-serif;
-    }
+        body {
+            font-family: 'Roboto', sans-serif;
+            font-family: 'Montserrat', sans-serif;
+        }
 
         .site-navbar {
             position: relative;
@@ -283,55 +283,70 @@
         }
     </style>
 </head>
-<body class="min-h-screen">
+<body class="min-h-screen" data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
-<!-- Header -->
-<header class="site-navbar site-navbar-target" role="banner">
-    <div class="container">
-        <div class="row align-items-center position-relative">
-            <div class="col-lg-4">
-                <nav class="site-navigation text-right ml-auto" role="navigation">
-                    <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
-                        <li class="active"><a href="index.html" class="nav-link">Главная</a></li>
-                        <li><a href="technology.html" class="nav-link">Контент</a></li>
-                        <li><a href="404.html" class="nav-link">CAD models</a></li>
-                    </ul>
-                </nav>
-            </div>
+<div class="site-wrap" id="home-section">
 
-            <div class="col-lg-4 text-center">
-                <div class="site-logo">
-                    <a href="index.html">Robotek Rage</a>
-                </div>
-                <div class="ml-auto toggle-button d-inline-block d-lg-none">
-                    <a href="#" class="site-menu-toggle py-5 js-menu-toggle text-white">
-                        <span class="icon-menu h3 text-white"></span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-lg-4">
-                <nav class="site-navigation text-left mr-auto" role="navigation">
-                    <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
-                        <li><a href="about.html" class="nav-link">О нас</a></li>
-                        <li><a href="blog.html" class="nav-link">Блог</a></li>
-                        <li><a href="contact.html" class="nav-link">Контакты</a></li>
-                        <li>
-                            <a href="#" id="signInButton" class="nav-link" title="Войти">
-                                <button class="signin-button">
-                                    Войти
-                                </button>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icon-close2 js-menu-toggle"></span>
             </div>
         </div>
+        <div class="site-mobile-menu-body"></div>
     </div>
-</header>
 
-<div class="container mx-auto px-4 py-8">
-    <div class="search-form-cad">
+    <header class="site-navbar site-navbar-target" role="banner">
+        <div class="container">
+            <div class="row align-items-center position-relative">
+
+                <div class="col-lg-4">
+                    <nav class="site-navigation text-right ml-auto " role="navigation">
+                        <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
+                            <li ><a href="index.html" class="nav-link">Главная</a></li>
+                            <li><a href="technology.html" class="nav-link">Контент</a></li>
+                            <li class="active"><a href="404.html" class="nav-link">CAD models</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <div class="col-lg-4 text-center">
+                    <div class="site-logo">
+                        <a href="index.html">Robotek Rage</a>
+                    </div>
+                    <div class="ml-auto toggle-button d-inline-block d-lg-none">
+                        <a href="#" class="site-menu-toggle py-5 js-menu-toggle text-white">
+                            <span class="icon-menu h3 text-white"></span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <nav class="site-navigation text-left mr-auto " role="navigation">
+                        <ul class="site-menu main-menu js-clone-nav ml-auto d-none d-lg-block">
+                            <li><a href="about.html" class="nav-link">О нас</a></li>
+                            <li><a href="blog.html" class="nav-link">Блог</a></li>
+                            <li><a href="contact.html" class="nav-link">Контакты</a></li>
+                            <li>
+                                <a href="#" id="signInButton" class="nav-link" title="Войти">
+                                    <button class="signin-button">
+                                        <i class="fab fa-google" style="color:white;  flex-shrink: 0;"></i>
+                                    </button>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-8">
+        <!-- Search and Filter Section -->
+
+    <div class="container mx-auto px-4 py-8">
+        <div class="search-form-cad">
             <div class="search-input-wrapper">
                 <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="11" cy="11" r="8"></circle>
@@ -359,68 +374,67 @@
         <div id="active-filters" class="active-filters"></div>
         <div class="search-stats" id="search-stats"></div>
 
-    <!-- Grid Section -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="cad-models-grid">
+        <!-- Grid Section -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" id="cad-models-grid">
+        </div>
     </div>
-</div>
 
-<!-- Modal -->
-<div id="modelModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">×</span>
-        <div class="flex flex-col md:flex-row gap-6">
-            <div class="md:w-1/2">
-                <img id="modalImage" src="" alt="Model Image" class="w-full h-auto rounded-lg shadow-lg">
-            </div>
-            <div class="md:w-1/2 space-y-4">
-                <h3 id="modalTitle" class="text-2xl font-bold text-gray-800"></h3>
-                <p id="modalDescription" class="text-gray-600"></p>
-                <div class="flex gap-4 mt-6">
-                    <a id="modalDownloadBtn" href="#" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-200">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                        </svg>
-                        Download
-                    </a>
+    <!-- Modal -->
+    <div id="modelModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">×</span>
+            <div class="flex flex-col md:flex-row gap-6">
+                <div class="md:w-1/2">
+                    <img id="modalImage" src="" alt="Model Image" class="w-full h-auto rounded-lg shadow-lg">
+                </div>
+                <div class="md:w-1/2 space-y-4">
+                    <h3 id="modalTitle" class="text-2xl font-bold text-gray-800"></h3>
+                    <p id="modalDescription" class="text-gray-600"></p>
+                    <div class="flex gap-4 mt-6">
+                        <a id="modalDownloadBtn" href="#" class="inline-flex items-center px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-200">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                            Download
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- Footer -->
-<footer class="site-footer">
-    <div class="container">
-        <div class="row justify-content-between">
-        <div class="col-lg-4">
-            <div class="widget">
-            <h3>О нас</h3>
-            <p>Мы — команда Robotek Rage, занимаемся робототехникой и стремимся к инновациям и победам в международных соревнованиях.</p>
-            </div>
-            <div class="widget">
-            <h3>Связаться с нами</h3>
-            <ul class="social list-unstyled">
-                <li><a href="#"><span class="icon-facebook"></span></a></li>
-                <li><a href="#"><span class="icon-twitter"></span></a></li>
-                <li><a href="#"><span class="icon-instagram"></span></a></li>
-                <li><a href="#"><span class="icon-linkedin"></span></a></li>
-            </ul>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-lg-4">
+                    <div class="widget">
+                        <h3>О нас</h3>
+                        <p>Мы — команда Robotek Rage, занимаемся робототехникой и стремимся к инновациям и победам в международных соревнованиях.</p>
+                    </div>
+                    <div class="widget">
+                        <h3>Связаться с нами</h3>
+                        <ul class="social list-unstyled">
+                            <li><a href="#"><span class="icon-facebook"></span></a></li>
+                            <li><a href="#"><span class="icon-twitter"></span></a></li>
+                            <li><a href="#"><span class="icon-instagram"></span></a></li>
+                            <li><a href="#"><span class="icon-linkedin"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="widget">
+                        <h3>Навигация</h3>
+                        <ul class="links list-unstyled">
+                            <li><a href="index.html">Main</a></li>
+                            <li><a href="about.html">About</a></li>
+                            <li><a href="technology.html">Сontent</a></li>
+                            <li><a href="404.html">Cad models</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-lg-6">
-            <div class="widget">
-            <h3>Навигация</h3>
-            <ul class="links list-unstyled">
-                <li><a href="index.html">Main</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="technology.html">Сontent</a></li>
-                <li><a href="careers.html">Cad models</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-            </div>
-        </div>
-        </div>
-    </div>
     </footer>
 
 <script src="js/jquery-3.3.1.min.js"></script>
@@ -432,7 +446,54 @@
 <script src="js/jquery.fancybox.min.js"></script>
 <script src="js/jquery.easing.1.3.js"></script>
 <script src="js/aos.js"></script>
+
 <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var siteMobileMenu = document.querySelector('.site-mobile-menu');
+            var siteMobileMenuHeader = document.querySelector('.site-mobile-menu-header');
+            var siteMobileMenuClose = document.querySelector('.site-mobile-menu-close');
+            var siteMobileMenuBody = document.querySelector('.site-mobile-menu-body');
+            var siteMenuToggle = document.querySelector('.site-menu-toggle');
+
+            // Function to open the mobile menu
+            function openMobileMenu() {
+                siteMobileMenu.classList.add('active');
+                document.body.classList.add('modal-open'); // Prevent scrolling when the menu is open
+            }
+
+            // Function to close the mobile menu
+            function closeMobileMenu() {
+                siteMobileMenu.classList.remove('active');
+                document.body.classList.remove('modal-open'); // Re-enable scrolling
+            }
+
+            // Event listener for opening the mobile menu
+            siteMenuToggle.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default action
+                openMobileMenu();
+            });
+
+            // Event listener for closing the mobile menu
+            siteMobileMenuClose.addEventListener('click', function(event) {
+                event.preventDefault(); // Prevent the default action
+                closeMobileMenu();
+            });
+
+            // Close the mobile menu when clicking outside of it
+            document.addEventListener('click', function(event) {
+                if (siteMobileMenu.classList.contains('active') && !event.target.closest('.site-mobile-menu, .site-menu-toggle')) {
+                    closeMobileMenu();
+                }
+            });
+
+            // Prevent scrolling when the menu is open
+            siteMobileMenu.addEventListener('touchmove', function(event) {
+                event.stopPropagation();
+            });
+        });
+    </script>
+
 <script>
     let allModels = [];
     const grid = document.getElementById('cad-models-grid');
