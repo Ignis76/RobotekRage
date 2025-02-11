@@ -732,7 +732,7 @@
         floatingButton.addEventListener('click', toggleClickerMenu);
 
          //Function to save data to firestore
-   function saveData() {
+     function saveData() {
             if (!isLoggedIn) return;
             db.collection("users").doc(auth.currentUser.uid).set({
                  score: score
@@ -740,6 +740,14 @@
          .then(() => console.log("Data saved successfully!"))
              .catch((error) => console.error("Error saving data:", error));
         }
+
+        function handleClick() {
+            score++;
+            updateScore();
+            saveData(); // Здесь вызываем saveData после того, как она определена
+            createNotification();
+        }
+
     function loadData() {
         if (!isLoggedIn) {
              resetClicker();
@@ -786,12 +794,6 @@
             statusDisplay.textContent = status;
         }
 
-        function handleClick() {
-            score++;
-            updateScore();
-            saveData
-            createNotification();
-        }
 
         function createNotification() {
             const notification = document.createElement('div');
