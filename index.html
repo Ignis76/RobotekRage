@@ -255,7 +255,17 @@
                 <span class="icon-close2 js-menu-toggle"></span>
             </div>
         </div>
-        <div class="site-mobile-menu-body"></div>
+        <div class="site-mobile-menu-body">
+            <ul class="site-menu main-menu js-clone-nav d-lg-none">
+                <li>
+                    <a href="#" id="signInButtonMobile" class="nav-link" title="Войти">
+                        <button class="signin-button">
+                            <i class="fab fa-google" style="color:white;  flex-shrink: 0;"></i>
+                        </button>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
 
     <header class="site-navbar site-navbar-target" role="banner">
@@ -310,8 +320,7 @@
                 <div class="row align-items-center justify-content-center">
                     <div class="col-lg-7 text-center">
                         <h1 data-aos="fade-up" data-aos-delay="0">Мы команда Robotek</h1>
-                        <p data-aos="fade-up" data-aos-delay="100">Наш девиз не обосраться!</p>
-                        <p data-aos="fade-up" data-aos-delay="200"><a href="technology.html" class="btn primary-outline-white--hover">Наши уроки</a></p>
+                        <p data-aos="fade-up" data-aos-delay="200"><a href="blog.html" class="btn primary-outline-white--hover">Наши статьи</a></p>
                     </div>
                 </div>
             </div>
@@ -332,7 +341,7 @@
                         <img src="images/fon_2.jpg" alt="Image" class="img-fluid">
                         <h3>Вы можете ознакомиться с нашими CAD моделями</h3>
                         <p>В этом разделе представлены CAD модели нашего производства, а также другие рекомендованные нами CAD модели для использования.</p>
-                        <div class="more"><a href="careers.html">Перейти</a></div>
+                        <div class="more"><a href="cad.html">Перейти</a></div>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -492,38 +501,38 @@
                 </div>
                 <div class="col-lg-3 col-md-6 mb-5">
                     <div class="post-entry-1 h-100">
-                        <a href="blog.html">
+                        <a href="intake.html">
                             <img src="images/intake.png" alt="Image" class="img-fluid" style="width: 300px; height: 200px;">
                         </a>
 
                         <div class="post-entry-1-contents">
                             <span class="meta">December 25, 2024</span>
-                            <h2><a href="blog.html">Активные и пассивные системы Intake для роботов</a></h2>
-                            <a href="blog.html" class="more">Читать статью</a>
+                            <h2><a href="intake.html">Активные и пассивные системы Intake для роботов</a></h2>
+                            <a href="intake.html" class="more">Читать статью</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-5">
                     <div class="post-entry-1 h-100">
-                        <a href="blog.html">
+                        <a href="sliders.html">
                             <img src="images/article_3.jpg" alt="Image" class="img-fluid" style="width: 300px; height: 200px;">
                         </a>
                         <div class="post-entry-1-contents">
                             <span class="meta">December 20, 2024</span>
-                            <h2><a href="blog.html">Стабилизация роботов: основы и методы</a></h2>
-                            <a href="blog.html" class="more">Подробнее</a>
+                            <h2><a href="sliders.html">Выбор слайдеров для FTC</a></h2>
+                            <a href="sliders.html" class="more">Подробнее</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6 mb-5">
                     <div class="post-entry-1 h-100">
-                        <a href="blog.html">
+                        <a href="liftextension.html">
                             <img src="images/article_4.jpg" alt="Image" class="img-fluid" style="width: 300px; height: 200px;">
                         </a>
                         <div class="post-entry-1-contents">
                             <span class="meta">December 15, 2024</span>
-                            <h2><a href="blog.html">Как создать эффективные захваты для роботов?</a></h2>
-                            <a href="blog.html" class="more">Читать статью</a>
+                            <h2><a href="liftextension.html">Выбор способа выдвижения intake</a></h2>
+                            <a href="liftextension.html" class="more">Читать статью</a>
                         </div>
                     </div>
                 </div>
@@ -557,7 +566,7 @@
                             <li><a href="index.html">Main</a></li>
                             <li><a href="about.html">About</a></li>
                             <li><a href="technology.html">Сontent</a></li>
-                            <li><a href="careers.html">Cad models</a></li>
+                            <li><a href="cad.html">Cad models</a></li>
                             <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </div>
@@ -603,7 +612,6 @@
 
 <script src="js/main.js"></script>
 <script>
-    // Your web app's Firebase configuration
     const firebaseConfig = {
         apiKey: "AIzaSyDaPh4tOyy8Q1QmYRf3WQBMwAOcyNCyGAA",
         authDomain: "robotek-rage.firebaseapp.com",
@@ -623,7 +631,6 @@
         return true;
     }
 
-    // Initialize Firebase
     let app;
     try {
         app = firebase.initializeApp(firebaseConfig);
@@ -634,6 +641,7 @@
     const auth = firebase.auth();
     const db = firebase.firestore();
     const signInButton = document.getElementById('signInButton');
+    const signInButtonMobile = document.getElementById('signInButtonMobile');
     const floatingButton = document.querySelector(".floating-button");
     const clickerMenu = document.getElementById('clickerMenu');
     const scoreDisplay = document.getElementById('score');
@@ -649,24 +657,32 @@
     const MAX_SCORE = 100;
     let lastClickTime = 0;
     const clickDelay = 200;
-    let isLoggedIn = false; // Track login status
+    let isLoggedIn = false;
 
+    const initialSignInButtonHTML = signInButton.innerHTML;
 
-    // Function to update UI based on authentication state
     function updateSignInButton(user) {
-        const button = document.getElementById('signInButton');
-        isLoggedIn = !!user; // Update login status
+        isLoggedIn = !!user; 
+        let buttonText = '';
+        let buttonTitle = '';
+
         if (user) {
-            button.innerHTML = `<i class="fas fa-sign-out-alt" style="color:white"></i>`;
-            button.title = "Выйти";
+            buttonText = '<i class="fab fa-google" style="color:white"></i> Выйти';
+            buttonTitle = 'Выйти';
         } else {
-            button.innerHTML = `<i class="fab fa-google" style="color:white"></i> Войти`;
-            button.title = "Войти";
+            buttonText = '<i class="fab fa-google" style="color:white"></i> Войти';
+            buttonTitle = 'Войти';
         }
-         floatingButton.style.display = 'flex';
+
+        signInButton.innerHTML = buttonText;
+        signInButton.title = buttonTitle;
+
+        signInButtonMobile.innerHTML = buttonText;
+        signInButtonMobile.title = buttonTitle;
+
+        floatingButton.style.display = 'flex';
     }
 
-    // Check current auth state
     auth.onAuthStateChanged((user) => {
         updateSignInButton(user);
         if (user) {
@@ -674,162 +690,161 @@
         }
     });
 
+    const signIn = (provider) => {
+        auth.signInWithPopup(provider)
+            .then((result) => {
+                const user = result.user;
+                console.log("User signed in:", user);
+                updateSignInButton(user);
+                loadData();
+            })
+            .catch((error) => {
+                let errorMessage = "Sign-in failed.";
+                if (error.code === 'auth/popup-closed-by-user') {
+                    errorMessage = "Sign-in popup was closed.";
+                } else if (error.code === 'auth/unauthorized-domain') {
+                    errorMessage = "This domain is not authorized.  Please authorize it in the Firebase console.";
+                }
+                alert(errorMessage);
+                console.error("Sign-in error:", error);
+                alert("Sign-in failed: " + error.message);
+            });
+    };
 
-    // Sign-in function
-    signInButton.addEventListener('click', function() {
+    const signOut = () => {
+        auth.signOut()
+            .then(() => {
+                console.log('User signed out');
+                updateSignInButton(null);
+                resetClicker();
+            })
+            .catch((error) => {
+                console.error('Sign-out error:', error);
+                let errorMessage = "Sign-out failed.";
+                alert(errorMessage);
+            });
+    };
+
+
+    const signInClickHandler = (event) => {
         if (!checkFirebaseConfiguration()) return;
         if (auth.currentUser) {
-            // Sign out
-            auth.signOut()
-                .then(() => {
-                    console.log('User signed out');
-                    //  alert('You have been signed out.'); // Removed the alert
-                    updateSignInButton(null);
-                    resetClicker();
-                })
-                .catch((error) => {
-                    console.error('Sign-out error:', error);
-                    let errorMessage = "Sign-out failed.";
-                    alert(errorMessage);
-                });
+            signOut();
         } else {
-            // Sign in
             const provider = new firebase.auth.GoogleAuthProvider();
-            provider.setCustomParameters({
-                prompt: 'select_account' // Force account selection
-            });
-            auth.signInWithPopup(provider)
-                .then((result) => {
-                    // User is signed in
-                    const user = result.user;
-                    console.log("User signed in:", user);
-                    // alert(`Welcome, ${user.displayName}!`); // Removed the alert
-                    updateSignInButton(user);
-                    // Load data
-                    loadData();
-                })
-                .catch((error) => {
-                    let errorMessage = "Sign-in failed.";
-                    if (error.code === 'auth/popup-closed-by-user') {
-                        errorMessage = "Sign-in popup was closed.";
-                    } else if (error.code === 'auth/unauthorized-domain') {
-                        errorMessage = "This domain is not authorized.  Please authorize it in the Firebase console.";
-                    }
-                    alert(errorMessage);
-                    console.error("Sign-in error:", error);
-                    alert("Sign-in failed: " + error.message);
-                });
+            provider.setCustomParameters({ prompt: 'select_account' });
+            signIn(provider);
         }
-    });
+        event.preventDefault();
+    };
 
-    // NEW CLICKER JS
-        function toggleClickerMenu() {
-            showMenu = !showMenu;
-            clickerMenu.classList.toggle('show');
-        }
+    signInButton.addEventListener('click', signInClickHandler);
+    signInButtonMobile.addEventListener('click', signInClickHandler);
 
-      
-        floatingButton.addEventListener('click', toggleClickerMenu);
+    function toggleClickerMenu() {
+        showMenu = !showMenu;
+        clickerMenu.classList.toggle('show');
+    }
 
-         //Function to save data to firestore
-     function saveData() {
-            if (!isLoggedIn) return;
-            db.collection("users").doc(auth.currentUser.uid).set({
-                 score: score
-            })
-         .then(() => console.log("Data saved successfully!"))
-             .catch((error) => console.error("Error saving data:", error));
-        }
 
-        function handleClick() {
-            score++;
-            updateScore();
-            saveData(); // Здесь вызываем saveData после того, как она определена
-            createNotification();
-        }
+    floatingButton.addEventListener('click', toggleClickerMenu);
+
+    function saveData() {
+        if (!isLoggedIn) return;
+        db.collection("users").doc(auth.currentUser.uid).set({
+            score: score
+        })
+            .then(() => console.log("Data saved successfully!"))
+            .catch((error) => console.error("Error saving data:", error));
+    }
+
+    function handleClick() {
+        score++;
+        updateScore();
+        saveData(); 
+        createNotification();
+    }
 
     function loadData() {
         if (!isLoggedIn) {
-             resetClicker();
-                return;
-          }
-           db.collection("users").doc(auth.currentUser.uid).get()
-                .then((doc) => {
-                   if (doc.exists) {
-                        score = doc.data().score || 0;
-                       updateScore();
-                         console.log("Data loaded successfully:", score);
-                   } else {
-                      console.log("No data found, setting to 0");
-                      resetClicker();
-                        saveData();
-                   }
-           })
-           .catch((error) => console.error("Error loading data:", error));
+            resetClicker();
+            return;
+        }
+        db.collection("users").doc(auth.currentUser.uid).get()
+            .then((doc) => {
+                if (doc.exists) {
+                    score = doc.data().score || 0;
+                    updateScore();
+                    console.log("Data loaded successfully:", score);
+                } else {
+                    console.log("No data found, setting to 0");
+                    resetClicker();
+                    saveData();
+                }
+            })
+            .catch((error) => console.error("Error loading data:", error));
     }
-     // Close click
-         // Close clicker menu on outside click
-         document.addEventListener('click', function(event) {
-            const isClickInsideMenu = clickerMenu.contains(event.target) || floatingButton.contains(event.target);
-            if (!isClickInsideMenu && clickerMenu.classList.contains('show')) {
-                 toggleClickerMenu();
-            }
-        });
-        
-          function updateScore() {
-            scoreDisplay.textContent = score;
-            const percentage = Math.min((score / MAX_SCORE) * 100, 100);
-            scoreBar.style.width = `${percentage}%`;
-            scoreBarContainer.style.setProperty('--scorePercentage', `${percentage}%`);
 
-            const respectLevel = Math.floor(score / 10);
-            respectLevelDisplay.textContent = respectLevel;
-
-            let status = 'ROOKIE';
-            if (score >= 10 && score < 50) {
-                status = 'THUG';
-            } else if (score >= 50) {
-                status = 'KINGPIN';
-            }
-            statusDisplay.textContent = status;
+    document.addEventListener('click', function (event) {
+        const isClickInsideMenu = clickerMenu.contains(event.target) || floatingButton.contains(event.target);
+        if (!isClickInsideMenu && clickerMenu.classList.contains('show')) {
+            toggleClickerMenu();
         }
+    });
 
+    function updateScore() {
+        scoreDisplay.textContent = score;
+        const percentage = Math.min((score / MAX_SCORE) * 100, 100);
+        scoreBar.style.width = `${percentage}%`;
+        scoreBarContainer.style.setProperty('--scorePercentage', `${percentage}%`);
 
-        function createNotification() {
-            const notification = document.createElement('div');
-            notification.classList.add('notification');
-            notification.textContent = '+RESPECT';
+        const respectLevel = Math.floor(score / 10);
+        respectLevelDisplay.textContent = respectLevel;
 
-            const offsetX = Math.random() * 40 - 20;
-            const offsetY = Math.random() * 20 - 10;
-
-            notification.style.setProperty('--offsetX', `${offsetX}px`);
-            notification.style.setProperty('--offsetY', `${offsetY}px`);
-            notificationsContainer.appendChild(notification);
-
-            setTimeout(() => {
-                notification.remove();
-            }, 1000);
+        let status = 'ROOKIE';
+        if (score >= 10 && score < 50) {
+            status = 'THUG';
+        } else if (score >= 50) {
+            status = 'KINGPIN';
         }
+        statusDisplay.textContent = status;
+    }
 
-        clickButton.addEventListener('click', addPoint);
-          
-      // OLD CLICKER  FUNCTION
-     function resetClicker() {
-            score = 0;
-           updateScore();
-            saveData();
-       }
-       
-     function addPoint() {
-      if (!isLoggedIn) {
+
+    function createNotification() {
+        const notification = document.createElement('div');
+        notification.classList.add('notification');
+        notification.textContent = '+RESPECT';
+
+        const offsetX = Math.random() * 40 - 20;
+        const offsetY = Math.random() * 20 - 10;
+
+        notification.style.setProperty('--offsetX', `${offsetX}px`);
+        notification.style.setProperty('--offsetY', `${offsetY}px`);
+        notificationsContainer.appendChild(notification);
+
+        setTimeout(() => {
+            notification.remove();
+        }, 1000);
+    }
+
+    clickButton.addEventListener('click', addPoint);
+
+    function resetClicker() {
+        score = 0;
+        updateScore();
+        saveData();
+    }
+
+    function addPoint() {
+        if (!isLoggedIn) {
             alert("Пожалуйста, войдите в аккаунт, чтобы кликать!");
             return;
         }
 
         const now = Date.now();
         if (now - lastClickTime > clickDelay) {
-           handleClick()
+            handleClick()
             lastClickTime = now;
         }
     }
